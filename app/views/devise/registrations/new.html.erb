@@ -1,0 +1,27 @@
+
+<%= form_with model: @user, url: user_registration_path, local: true do |f| %>
+
+  <div class="form-main">
+   <div class="form-group">
+    <label class="form-text">メールアドレス</label>
+    <%= f.email_field :email, class:"input-default", id:"email"%>
+    </div>
+   <div class="form-group">
+    <label class="form-text">パスワード</label>
+    <%= f.text_area :password, class:"input-default", id:"password"%>
+   <div class="form-group">
+    <label class="form-text">ニックネーム</label>
+    <%= f.text_area :nickname, class:"input-default", id:"nickname", placeholder:"hoge", maxlength:"20"%>
+   </div>
+   <div class="form-group">
+    <label calss="form-text">名字</label>
+    <%= f.text_area :family_name, class:"input-default", id:"family_name"%>
+   </div>
+   <div class="form-group">
+    <label class="form-group">名前</label>
+    <%= f.text_area :first_name, class:"input-default", id:"first_name"%>
+   <div class='regist-btn'>
+    <%= f.submit '登録', calss:"registr-red-btn" %>
+   </div>
+  </div>
+<% end %>
