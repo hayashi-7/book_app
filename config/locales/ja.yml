@@ -5,3 +5,5 @@ ja:
        nickname: ニックネーム
        family_name: 名字
        first_name: 名前
+       gender: 性別
+       age_id: 年齢

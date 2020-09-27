@@ -25,6 +25,13 @@
    <div class="form-group">
     <label class="form-group">名前</label>
     <%= f.text_area :first_name, class:"input-default", id:"first_name"%>
+   </div>
+   <label><%= f.radio_button :gender , "男" %>男</label>
+   <label><%= f.radio_button :gender , "女" %>女</label>
+   <div class="form-group">
+   年齢
+    <%= f.collection_select(:age_id, Age.all, :id, :name, {}, {class:"select-box", id:"user-age"}) %>
+   </div>
    <div class='regist-btn'>
     <%= f.submit '登録', calss:"registr-red-btn" %>
    </div>
