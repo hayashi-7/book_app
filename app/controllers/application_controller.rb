@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    user_dates = %i[nickname first_name family_name ]
+    user_dates = %i[nickname first_name family_name gender age_id ]
     devise_parameter_sanitizer.permit :sign_up, keys: user_dates
   end
 end
