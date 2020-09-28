@@ -1,6 +1,8 @@
   <%= form_with model: @book, local: true do |f| %>
    <%= render 'shared/error_messages', model: f.object %>
     <div class='book-new'>
+   イメージ
+     <%= f.file_field :image %>
      <div class='book-whie'>
      本のカテゴリー
     <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"book-category"}) %>
@@ -19,11 +21,11 @@
      </div>
      <div class='book-whie'>
      作者
-          <%= f.text_area :publisher, class:"input-default", id:"publisher" %>
+          <%= f.text_area :author, class:"input-default", id:"author" %>
       </div>
       <div class='book-whie'>
       出版社
-         <%= f.text_area :author, class:"input-default", id:"author" %>
+         <%= f.text_field :tag_list, value:@book.tag_list.join('') %>
          </div>
          <div class='book-whie'>
          備考

@@ -4,3 +4,19 @@
 <%= link_to 'ログイン', new_user_session_path %>
 
     <%= link_to '投稿する', new_book_path %>
+    <% @books.each do |book| %>
+<div class='new-book'>
+    <% if book.image.attached?%>
+     <%= iamge_tag book.image%>
+     <% end %>
+    <%= book.name%>
+    ¥<%= book.price%>
+    <%= book.author%>
+    <%= book.status[:name] %>
+    <%= book.category[:name] %>
+    <% book.tag_list.each do |tag| %>
+    <%= link_to tag, books_path(tag_name: tag) %>
+<% end %>
+    <% end %>
+    
+</div>
