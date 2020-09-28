@@ -1,10 +1,12 @@
 class BooksController < ApplicationController
   def index
     @books = Book.order('created_at DESC')
-    if params[:tag_name]
-      @books = Book.tagged_with("#{params[:tag_name]}")
+      if params[:tag]
+        @books = Book.tagged_with(params[:tag])
+      else
+        @books = Book.all
+      end
     end
-  end
 
   def new
     @book = Book.new
@@ -19,7 +21,7 @@ class BooksController < ApplicationController
       render :new
    end
   end
-
+  
   private
 
   def book_params
