@@ -14,4 +14,12 @@ class Book < ApplicationRecord
     validates :author
   end
   validates :category_id, :status_id, numericality: { other_than: 1 }
+  
+  def self.category(category)
+    if 1 < category.to_i && category.to_i < 19
+      Category.where('category_id LIKE(?)',"%#{category}%")
+    else 
+      Category.all
+    end
+  end
 end

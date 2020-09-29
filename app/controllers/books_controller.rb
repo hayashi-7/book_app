@@ -6,13 +6,17 @@ class BooksController < ApplicationController
       else
         @books = Book.all
       end
+      @categorys = Category.where.not(id: 1)
     end
-
   def new
     @book = Book.new
     @tags = ActsAsTaggableOn::Tag.all
   end
-  
+
+  def category
+    @books = Book.category(params[:id])
+  end
+
   def create
     @book = Book.new(book_params)
     if @book.save

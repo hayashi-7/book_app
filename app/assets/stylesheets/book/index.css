@@ -1,0 +1,27 @@
+li{
+  list-style: none;
+}
+
+a {
+ 
+  text-decoration:none;
+  }
+  a:visited {
+ 
+    color:purple;
+
+     
+    }
+  a:hover {
+ 
+    color:silver;
+    text-decoration:underline;
+     
+    }
+.main{
+  background-color: gray;
+}
+.book-image {
+  width: 33vh;
+  height: 33vh;
+}
