@@ -7,10 +7,7 @@
      本のカテゴリー
     <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"book-category"}) %>
       </div>
-     <div class='book-whie'>
-     本の状態
-    <%= f.collection_select(:status_id, Status.all, :id, :name, {}, {class:"select-box", id:"book-status"}) %>
-     </div>
+     
      <div class='book-whie'>
      本の名前
      <%= f.text_area :name, class:"input-default", id:"name" %>
