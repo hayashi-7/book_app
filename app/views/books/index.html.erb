@@ -16,7 +16,6 @@
     <%end%>
     <%= book.price%>円
     <%= book.author%>
-    <%= book.status[:name] %>
     <%= book.category[:name] %>
     <% if user_signed_in? && current_user.id == book.user_id %>
     </div>
