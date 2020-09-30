@@ -1,0 +1,45 @@
+li{
+  list-style: none;
+}
+
+a {
+ 
+  text-decoration:none;
+  }
+  a:visited {
+ 
+    color:purple;
+
+     
+    }
+  a:hover {
+ 
+    color:silver;
+    text-decoration:none;
+     
+    }
+
+    .book-img{
+      border: 1px solid #ddd;
+      width:  23vh;
+      height: 33vh;
+      margin: 10px auto 0;
+      transition-duration: 0.5s;
+    }
+    .book-img img{
+      width: 100%;
+      cursor: pointer;
+    }
+    .book-img:hover{
+      box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+      transform: translateY(-10px);
+      transition-duration: 0.5s;
+    }
+
+    .book-new{
+      padding-top: 30px;
+    }
+    
+    
+    
+   

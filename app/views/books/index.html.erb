@@ -1,22 +1,43 @@
-
-<%= link_to '登録', new_user_registration_path %>
-<%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>
-<%= link_to 'ログイン', new_user_session_path %>
-
-    <%= link_to '投稿する', new_book_path %>
+<div class='main'>
+<%= render "shared/header" %>
     <% @books.each do |book| %>
 <div class='new-book'>
+  <div class='book-wrap'>
+  <div class='book-new'>
+   <%= link_to book_path(book.id), method: :get do %>
+    
     <% if book.image.attached?%>
-     <%= iamge_tag book.image%>
+     <%= image_tag book.image , class: 'book-img'%>
      <% end %>
-    <%= book.name%>
-    ¥<%= book.price%>
+    
+     <%end%>
+      <%= link_to book_path(book.id), method: :get do %>
+    <%=  book.name%>
+    <%end%>
+    <%= book.price%>円
     <%= book.author%>
     <%= book.status[:name] %>
     <%= book.category[:name] %>
-    
-    <p>出版社 <%= raw(book.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %></p>
-       <% end %>
+    <% if user_signed_in? && current_user.id == book.user_id %>
+    </div>
+    <%= link_to '編集', edit_book_path(book.id), method: :get, class: "item-red-btn" %>
+/
+    <%= link_to '削除', book_path(book.id), method: :delete, class:'item-destroy' %>
+    <% else  %>
+    <%# 商品が売れていない場合はこちらを表示しましょう %>
+    <%= link_to '詳細', book_path(book.id),class:"item-red-btn"%>
+    <%# //商品が売れていない場合はこちらを表示しましょう %>
+    <% end %>
 
-    
+    <p>出版社 <%= raw(book.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %></p>
+  </div>
+ <% end %>
+ 
+<% @categorys.each do |category|%>
+<li>
+  <%= link_to "#{category.name}", category_book_path(category.id)%>
+</li>
+<%end%>
+ 
+</div>
 </div>
