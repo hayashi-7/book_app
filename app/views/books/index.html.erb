@@ -3,15 +3,23 @@
     <% @books.each do |book| %>
 <div class='new-book'>
   <div class='book-wrap'>
+  <div class='book-new'>
+   <%= link_to book_path(book.id), method: :get do %>
+    
     <% if book.image.attached?%>
-     <%= image_tag book.image , class: 'book-image'%>
+     <%= image_tag book.image , class: 'book-img'%>
      <% end %>
+    
+     <%end%>
+      <%= link_to book_path(book.id), method: :get do %>
     <%=  book.name%>
+    <%end%>
     <%= book.price%>円
     <%= book.author%>
     <%= book.status[:name] %>
     <%= book.category[:name] %>
     <% if user_signed_in? && current_user.id == book.user_id %>
+    </div>
     <%= link_to '編集', edit_book_path(book.id), method: :get, class: "item-red-btn" %>
 /
     <%= link_to '削除', book_path(book.id), method: :delete, class:'item-destroy' %>

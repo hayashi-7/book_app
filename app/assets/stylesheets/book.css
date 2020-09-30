@@ -1,0 +1,22 @@
+.site-header{
+  position: fixed;
+  width: 100%;
+  background-color: rgb(103, 214, 140);
+  padding: 22px 0px;
+  text-align: right;
+}
+
+.btn--orange,
+a.btn--orange {
+  color: #fff;
+  background-color: #eb6100;
+}
+.btn--orange:hover,
+a.btn--orange:hover {
+  color: #fff;
+  background: #f56500;
+}
+
+a.btn--radius {
+   border-radius: 100vh;
+}

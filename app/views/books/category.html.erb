@@ -1,3 +1,13 @@
-<%= @books.each do |book| %>
+<% @books.each do |book| %>
   <%= book.name %>
-<% end %>
+   <%= image_tag book.image , class: 'book-img'%>
+     
+      <%= link_to book_path(book.id), method: :get do %>
+   
+    
+    <%= book.price%>円
+    <%= book.author%>
+    <%= book.status[:name] %>
+    <%= book.category[:name] %>
+     <% end %>
+<%end%>

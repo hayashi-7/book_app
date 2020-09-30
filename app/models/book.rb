@@ -17,9 +17,10 @@ class Book < ApplicationRecord
   
   def self.category(category)
     if 1 < category.to_i && category.to_i < 19
-      Category.where('category_id LIKE(?)',"%#{category}%")
-    else 
-      Category.all
+      Book.where(category_id: category)
+      else
+      Book.all
     end
   end
+
 end
