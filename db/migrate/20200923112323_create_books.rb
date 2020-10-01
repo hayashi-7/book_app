@@ -6,7 +6,7 @@ class CreateBooks < ActiveRecord::Migration[6.0]
       t.string :name, null: false
       t.integer :price, null: false
       t.string :author, null: false
-      t.text :text, null: false
+      t.text :review, null: false
       t.integer :category_id, null: false
       t.references :user, null: false, foreign_key: true
     end

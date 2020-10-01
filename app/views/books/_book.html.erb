@@ -1,26 +1,17 @@
-<div class='main'>
-<%= render "shared/header" %>
-    <% @books.each do |book| %>
-<div class='new-book'>
-  <div class='book-wrap'>
-  <div class='book-new'>
+<div class='book-new'>
    <%= link_to book_path(book.id), method: :get do %>
     
-    
+    <% if book.image.attached?%>
      <%= image_tag book.image , class: 'book-img'%>
-    
+     <% end %>
     
      <%end%>
       <%= link_to book_path(book.id), method: :get do %>
     <%=  book.name%>
     <%end%>
-    <%= book.created_at.strftime('%Y/%m/%d')%>に投稿
-    <%=link_to book.user.nickname, user_path(book.user.id)%>
     <%= book.price%>円
     <%= book.author%>
     <%= book.category[:name] %>
-    レビュー
-    <%= book.review %>
     <% if user_signed_in? && current_user.id == book.user_id %>
     </div>
     <%= link_to '編集', edit_book_path(book.id), method: :get, class: "item-red-btn" %>
@@ -34,13 +25,3 @@
 
     <p>出版社 <%= raw(book.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %></p>
   </div>
- <% end %>
- 
-<% @categorys.each do |category|%>
-<li>
-  <%= link_to "#{category.name}", category_book_path(category.id)%>
-</li>
-<%end%>
- 
-</div>
-</div>

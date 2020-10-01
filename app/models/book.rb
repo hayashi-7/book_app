@@ -10,6 +10,8 @@ class Book < ApplicationRecord
     validates :category_id
     validates :user
     validates :author
+    validates :review
+    validates :image
   end
   validates :category_id, numericality: { other_than: 1 }
   

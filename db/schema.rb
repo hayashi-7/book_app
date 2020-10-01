@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(version: 2020_09_28_071323) do
     t.string "name", null: false
     t.integer "price", null: false
     t.string "author", null: false
-    t.text "text", null: false
+    t.text "review", null: false
     t.integer "category_id", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_books_on_user_id"

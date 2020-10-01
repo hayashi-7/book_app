@@ -26,6 +26,9 @@ class BooksController < ApplicationController
     end
   end
 
+
+  
+
   def show
   end
 
@@ -34,7 +37,7 @@ class BooksController < ApplicationController
   
   def update
     if @book.update(book_params)
-       redirect_to book_path
+       redirect_to root_path
     else
        render :edit
     end
@@ -59,6 +62,6 @@ class BooksController < ApplicationController
   end
 
   def book_params
-    params.require(:book).permit(:name, :price, :category_id, :tag_list, :text, :author, :image).merge(user_id: current_user.id)
+    params.require(:book).permit(:name, :price, :category_id, :tag_list, :review, :author, :image).merge(user_id: current_user.id)
   end
 end
