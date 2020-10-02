@@ -1,0 +1,13 @@
+ <%= link_to book_path(@book.id), method: :get do %>
+    
+    
+     <%= image_tag @book.image , class: 'book-img'%>
+    
+     <%end%>
+      <%= link_to book_path(@book.id), method: :get do %>
+    <%=  @book.title%>
+    <%end%>
+    <%= @book.review%>
+    <%= @book.price%>円
+    <%= @book.author%>
+    <%= @book.category[:name] %>

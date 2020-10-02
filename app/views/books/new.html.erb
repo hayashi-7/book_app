@@ -1,33 +1,86 @@
   <%= form_with model: @book, local: true do |f| %>
    <%= render 'shared/error_messages', model: f.object %>
     <div class='book-new'>
-   イメージ
-     <%= f.file_field :image %>
      <div class='book-whie'>
      本のカテゴリー
     <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"book-category"}) %>
       </div>
-     
-     <div class='book-whie'>
-     本の名前
-     <%= f.text_area :name, class:"input-default", id:"name" %>
-     </div>
-     <div class='book-whie'>
+       
+    
+   
+
+
+
+    <div>
+        ISBN(13桁)<input id="isbn" type="text" name="isbn" value="" autofocus>
+        <button id="getBook" class="btn btn-default">書籍情報取得</button>
+    </div>
+
+    <div>
+        
+        <p id="thumbnail"></p>
+<%= f.text_field :image ,id:"cover"%>
+    </div>
+
+    <div>
+        書籍名
+        <%= f.text_field :title, class:"input-default", id:"title" %>
+    </div>
+<div class='book-whie'>
      値段
-     ¥<%= f.text_area :price, class:"input-default", id:"price" %>
+     ¥<%= f.text_field :price, class:"input-default", id:"price" %>
      </div>
-     <div class='book-whie'>
-     作者
-          <%= f.text_area :author, class:"input-default", id:"author" %>
-      </div>
-      <div class='book-whie'>
-      出版社
-         <%= f.text_field :tag_list, value:@book.tag_list.join('') %>
-         </div>
-         <div class='book-whie'>
+    <div>
+        出版社
+         <%= f.text_field :tag_list, value:@book.tag_list.join(''), id:"publisher"%>
+    </div>
+    <div>
+        著者
+         <%= f.text_field :author, class:"input-default", id:"author" %>
+    </div>
+      
+    <div>
+        詳細：<%=f.text_area :description,id:"description" %>
+    </div>
+   <div class='book-whie'>
       レビュー
          <%= f.text_area :review, class:"input-text", id:"review" %>
          </div>
-         <%= f.submit '投稿する'%>
+         
+    <script>
+        $(function() {
+            $('#getBook').click( function( e ) {
+                e.preventDefault();
+                const isbn = $("#isbn").val();
+                const url = "https://api.openbd.jp/v1/get?isbn=" + isbn;
+
+                $.getJSON( url, function( data ) {
+                    if( data[0] == null ) {
+                        alert("データが見つかりません");
+                    } else {
+                        if( data[0].summary.cover == "" ){
+                            $("#thumbnail").html('<img src=\"\" />');
+                        } else {
+                            $("#thumbnail").html('<img src=\"' + data[0].summary.cover + '\" style=\"border:solid 1px #000000\" />');
+                        }
+                        $("#title").val(data[0].summary.title);
+                        $("#publisher").val(data[0].summary.publisher);
+                        $("#author").val(data[0].summary.author);
+                        $("#description").val(data[0].onix.CollateralDetail.TextContent[0].Text);
+                        $("#cover").val(data[0].summary.cover);
+
+                    }
+                });
+                
+            });
+        });
+    </script>
+
+
+     
+    
+    
+      
+      <%= f.submit '投稿する'%>
     </div>
   <%end%>

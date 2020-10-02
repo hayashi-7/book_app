@@ -36,11 +36,13 @@ ActiveRecord::Schema.define(version: 2020_09_28_071323) do
   create_table "books", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "name", null: false
+    t.string "title", null: false
     t.integer "price", null: false
     t.string "author", null: false
     t.text "review", null: false
+    t.text "description", null: false
     t.integer "category_id", null: false
+    t.text "image", null: false
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_books_on_user_id"
   end

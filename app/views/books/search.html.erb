@@ -5,10 +5,10 @@
 <% if @results.length !=0 %>
   <% @results.each do |result| %>
     <li>
-      <%= result.name %>
+      <%= result.title %>
 
       <%= image_tag result.image%>
-      <%= result.price %>
+      <%= result.price %>円
       <%= result.category.name %>
     </li>
   <% end %>

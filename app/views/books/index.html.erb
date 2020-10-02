@@ -12,7 +12,7 @@
     
      <%end%>
       <%= link_to book_path(book.id), method: :get do %>
-    <%=  book.name%>
+    <%=  book.title%>
     <%end%>
     <%= book.created_at.strftime('%Y/%m/%d')%>に投稿
     <%=link_to book.user.nickname, user_path(book.user.id)%>

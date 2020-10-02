@@ -3,15 +3,15 @@ class Book < ApplicationRecord
   acts_as_taggable
   belongs_to_active_hash :category
   belongs_to :user
-  has_one_attached :image
   with_options presence: true do
-    validates :name
+    validates :title
     validates :price, numericality: { greater_than_or_equal_to: 150, less_than_or_equal_to: 9_999_999 }
     validates :category_id
     validates :user
     validates :author
     validates :review
     validates :image
+    validates :description
   end
   validates :category_id, numericality: { other_than: 1 }
   

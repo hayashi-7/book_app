@@ -1,17 +1,14 @@
 
 <%= form_with model: @book, local: true do |f| %>
    <%= render 'shared/error_messages', model: f.object %>
-    <div class='book-new'>
-   イメージ
-     <%= f.file_field :image %>
-     <div class='book-whie'>
+    <%= image_tag @book.image , class: 'book-img'%>
      本のカテゴリー
     <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"book-category"}) %>
       </div>
      
      <div class='book-whie'>
      本の名前
-     <%= f.text_area :name, class:"input-default", id:"name" %>
+     <%= f.text_area :title, class:"input-default", id:"name" %>
      </div>
      <div class='book-whie'>
      値段
