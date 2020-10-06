@@ -1,0 +1,11 @@
+<% if book.liked_by?(current_user) %>
+	<%= link_to book_likes_path(book), method: :delete,remote: true do %>
+		<i class="fas fa-heart" style="color: #F96167"></i>
+		<span><%= book.likes.count %></span>
+	<% end %>
+<% else %>
+	<%= link_to book_likes_path(book), method: :post,remote: true do %>
+		<i class="far fa-heart"></i>
+		<span><%= book.likes.count %></span>
+	<% end %>
+<% end %>

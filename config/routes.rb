@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :users 
   resources :books do
+    resource :likes, only: %i[create destroy]
     member do
     get 'category'
     end

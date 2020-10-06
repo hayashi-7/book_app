@@ -3,6 +3,7 @@ class Book < ApplicationRecord
   acts_as_taggable
   belongs_to_active_hash :category
   belongs_to :user
+  has_many :likes, dependent: :destroy
   with_options presence: true do
     validates :title
     validates :price, numericality: { greater_than_or_equal_to: 150, less_than_or_equal_to: 9_999_999 }
@@ -22,5 +23,7 @@ class Book < ApplicationRecord
       Book.all
     end
   end
-
+  def liked_by?(user)
+    likes.where(user_id: user.id).exists?
+  end
 end
