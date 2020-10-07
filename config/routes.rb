@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'relationships/create'
+  get 'relationships/destroy'
   devise_for :users 
   resources :books do
     resource :likes, only: %i[create destroy]
@@ -11,5 +13,10 @@ Rails.application.routes.draw do
   end
   root to: 'books#index'
   get 'tags/:tag', to: 'books#index', as: :tag
-  resources :users, only: :show
+  resources :users do
+    member do
+      get :following, :followers
+    end
+  end
+  resources :relationships, only: %i[create destroy]
 end

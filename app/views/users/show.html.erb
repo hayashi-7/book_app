@@ -1,4 +1,11 @@
 <div class="contents row">
+<div id="follow_form">
+      <%= render 'follow_form' %>
+    </div>
+     <table id="relationship">
+      <%= render "relationship" %>
+    </table>
+
   <p><%= @nickname %>さんの投稿一覧</p>
   <% @books.each do |book| %>
     <%= render partial: "books/userbook", locals: { book: book } %>
