@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2020_10_05_072617) do
     t.integer "category_id", null: false
     t.text "image", null: false
     t.integer "likes_count"
+    t.float "star"
     t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_books_on_user_id"
   end

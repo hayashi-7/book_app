@@ -11,6 +11,7 @@ class CreateBooks < ActiveRecord::Migration[6.0]
       t.integer :category_id, null: false
       t.text :image, null: false
       t.integer :likes_count
+      t.float :star
       t.references :user, null: false, foreign_key: true
     end
   end

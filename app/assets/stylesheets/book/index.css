@@ -42,4 +42,7 @@ a {
     
     
     
-   
+.book-new{
+  border: 1px solid black;
+  margin-bottom: 20px;
+}

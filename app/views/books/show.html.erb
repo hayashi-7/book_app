@@ -11,3 +11,7 @@
     <%= @book.price%>円
     <%= @book.author%>
     <%= @book.category[:name] %>
+    <%= link_to 'top', root_path%>
+   <span class="favorite_<%= @book.id %>" >
+							    		<%= render "like", book: @book %>
+									</span>
