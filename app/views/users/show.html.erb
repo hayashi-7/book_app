@@ -1,3 +1,10 @@
+<% if @user.image? %>
+  <img src='<%= @user.image %>' class="icon" alt="ユーザーアイコン">
+<% else %>
+  <img src="/assets/default.jpg" class="icon" alt="ユーザーアイコン" %>
+<% end %>
+<%= @user.nickname%>
+<%= link_to '編集', edit_user_path%>
 <div class="contents row">
 <div id="follow_form">
       <%= render 'follow_form' %>
@@ -5,7 +12,6 @@
      <table id="relationship">
       <%= render "relationship" %>
     </table>
-
   <p><%= @nickname %>さんの投稿一覧</p>
   <% @books.each do |book| %>
     <%= render partial: "books/userbook", locals: { book: book } %>

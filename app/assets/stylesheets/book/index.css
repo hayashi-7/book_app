@@ -21,8 +21,8 @@ a {
 
     .book-img{
       border: 1px solid #ddd;
-      width:  23vh;
-      height: 33vh;
+      width:  13vh;
+      height: 18vh;
       margin: 10px auto 0;
       transition-duration: 0.5s;
     }

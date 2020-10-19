@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
-  validates :password, length: { minimum: 6 }, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }
+  validates :password, length: { minimum: 6 }, format: { with: /\A(?=.*?[a-z])(?=.*?\d)[a-z\d]+\z/i }, on: :create
   with_options presence: true do
     validates :email, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
     validates :nickname
@@ -15,7 +15,7 @@ class User < ApplicationRecord
   has_many :following, through: :following_relationships
   has_many :follower_relationships, foreign_key: 'following_id', class_name: 'Relationship', dependent: :destroy
   has_many :followers, through: :follower_relationships
-
+  mount_uploader :image, ImageUploader
   def following?(user)
     following_relationships.find_by(following_id: user.id)
   end
