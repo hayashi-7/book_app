@@ -1,0 +1,14 @@
+ <%= form_for(@user) do |f| %>
+<div class="field">
+ <% if @user.image? %>
+          <%= image_tag @user.image.url,  class: "icon", id: "img_prev" %>
+        <% else %>
+          <%= image_tag "default.jpg", alt: "user-icon",  class: "icon", id: "img_prev" %>
+        <% end %>
+  <%= f.label "アイコン画像" %><br/>
+  <%= f.file_field :image %>
+</div>
+<%= f.label "ニックネーム"%>
+<%= f.text_field :nickname%>
+<%= f.submit '送信'%>
+<% end %>

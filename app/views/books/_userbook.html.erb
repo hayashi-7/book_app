@@ -1,0 +1,18 @@
+<%= link_to book_path(book.id), method: :get do %>
+    
+    
+     <%= image_tag book.image , class: 'book-img'%>
+    
+     <%end%>
+      レビュー  <%= book.review %>
+      <%= link_to book_path(book.id), method: :get do %>
+    <%=  book.title%>
+    <%end%>
+    <%= book.created_at.strftime('%Y/%m/%d')%>に投稿
+    <%=link_to book.user.nickname, user_path(book.user.id)%>
+    <%= book.price%>円
+    <%= book.author%>
+    <%= book.category[:name] %><br>
+    <%= book.description%>
+    <i class="fas fa-heart" style="color: #F96167"></i>
+		<span><%= book.likes.count %></span>

@@ -1,7 +1,7 @@
-<%= render "shared/header" %>
 
+<%if @books.present?%>
 <% @books.each do |book| %>
-  <%= book.name %>
+  <%= book.title %>
    <%= image_tag book.image , class: 'book-img'%>
      
       <%= link_to book_path(book.id), method: :get do %>
@@ -11,7 +11,13 @@
     <%= book.author%>
     <%= book.category[:name] %>
      <% end %>
+     <%end%>
+     <%else%>
+
+     選択したカテゴリーに該当する投稿はありません
   <%end%>
+  <br>
+<%= link_to 'トップページへ戻る', root_path %>
  
  
 

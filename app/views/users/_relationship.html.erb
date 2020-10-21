@@ -1,0 +1,12 @@
+    <tr class="follower">
+  <p>フォロワー</p>
+  <td style="color: black;">
+    <%= link_to followers_user_path(@user.id) do %><%= @user.followers.count %>人<% end %>
+  </td>
+</tr>
+<tr class="follow">
+  <p>フォロー</p>
+  <td style="color: black;">
+    <%= link_to following_user_path(@user.id) do %><%= @user.following.count %>人<% end %>
+  </td>
+</tr>

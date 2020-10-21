@@ -21,8 +21,8 @@ a {
 
     .book-img{
       border: 1px solid #ddd;
-      width:  23vh;
-      height: 33vh;
+      width:  15vh;
+      height: 22vh;
       margin: 10px auto 0;
       transition-duration: 0.5s;
     }
@@ -42,4 +42,11 @@ a {
     
     
     
-   
+.book-new{
+  border: 1px solid black;
+  margin: 10px 20px;
+}
+.logo-icon{
+  height: 40px;
+  width: 60px;
+}
