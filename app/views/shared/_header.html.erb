@@ -5,6 +5,9 @@
   <%= f.submit '検索' %>
 <% end %>
 <%= link_to "bookapp", root_path, class:"mokuji"%>
+<%= link_to root_path, method: :get do %>
+<img src="/assets/Logo.jpg" class="logo-icon">
+<%end%>
 <% if user_signed_in? %>
 <%= link_to "マイページ", user_path(current_user.id) %>
 <%= link_to 'ログアウト', destroy_user_session_path, method: :delete %>

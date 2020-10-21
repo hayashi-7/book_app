@@ -8,7 +8,8 @@ class BooksController < ApplicationController
         @books = Book.all
       end
       @categorys = Category.where.not(id: 1)
-    end
+  end
+
   def new
     @book = Book.new
     @tags = ActsAsTaggableOn::Tag.all
@@ -25,7 +26,6 @@ class BooksController < ApplicationController
       redirect_to new_user_session_path
     end
   end
-
 
   
 
