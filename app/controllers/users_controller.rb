@@ -16,8 +16,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find(params[:id])
-    @nickname = @user.nickname
     @books = @user.books
+    @likes = Like.where(user_id: @user.id)
   end
 
   def following
