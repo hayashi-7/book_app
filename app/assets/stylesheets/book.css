@@ -1,10 +1,8 @@
-.site-header{
-  position: fixed;
-  width: 100%;
-  background-color: rgb(103, 214, 140);
-  padding: 22px 0px;
-  text-align: right;
+.post-con{
+  display: flex;
 }
+
+
 
 .btn--orange,
 a.btn--orange {
@@ -19,4 +17,9 @@ a.btn--orange:hover {
 
 a.btn--radius {
    border-radius: 100vh;
+}
+.book-new{
+  border: 1px solid black;
+
+  
 }

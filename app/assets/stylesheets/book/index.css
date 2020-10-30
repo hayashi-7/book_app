@@ -23,7 +23,6 @@ a {
       border: 1px solid #ddd;
       width:  15vh;
       height: 22vh;
-      margin: 10px auto 0;
       transition-duration: 0.5s;
     }
     .book-img img{
@@ -35,17 +34,19 @@ a {
       transform: translateY(-1px);
       transition-duration: 0.5s;
     }
-
-    .book-new{
-      padding-top: 30px;
+    .side-bar{
+      height: 100%;
+     
+      border: solid 1px black;
     }
+
+.cate-con{
+  margin: 8px;
+}    
+
     
     
-    
-.book-new{
-  border: 1px solid black;
-  margin: 10px 20px;
-}
+
 .logo-icon{
   height: 40px;
   width: 60px;

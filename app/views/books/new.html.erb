@@ -1,7 +1,7 @@
   <%= javascript_pack_tag "raty" %>
   <%= form_with model: @book, local: true do |f| %>
    <%= render 'shared/error_messages', model: f.object %>
-    <div class='book-new'>
+    
      <div class='book-whie'>
      本のカテゴリー
     <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"book-category"}) %>
@@ -97,5 +97,5 @@
     
       
       <%= f.submit '投稿する'%>
-    </div>
+    
   <%end%>

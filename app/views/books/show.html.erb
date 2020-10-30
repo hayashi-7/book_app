@@ -1,17 +1,20 @@
- <%= link_to book_path(@book.id), method: :get do %>
+ 
     
     
      <%= image_tag @book.image , class: 'book-img'%>
     
-     <%end%>
-      <%= link_to book_path(@book.id), method: :get do %>
+     
+      
     <%=  @book.title%>
-    <%end%>
+   
     <%= @book.review%>
     <%= @book.price%>円
     <%= @book.author%>
     <%= @book.category[:name] %>
-    <%= link_to 'top', root_path%>
+    <% if user_signed_in? && current_user.id == @book.user_id %>
+          <%= link_to '編集', edit_book_path(@book.id), method: :get, class: "item-red-btn" %>/
+          <%= link_to '削除', book_path(@book.id), method: :delete, class:'item-destroy' %>
+        <% end %>
    <span class="favorite_<%= @book.id %>" >
 							    		<%= render "like", book: @book %>
 									</span>

@@ -1,13 +1,11 @@
-<h1>
-  検索結果
-</h1>
+
 <%# 検索結果の個数で条件分岐 %>
 <% if @results.length !=0 %>
   <% @results.each do |result| %>
     <li>
       <%= result.title %>
 
-      <%= image_tag result.image%>
+      <%= image_tag result.image ,class: 'book-img'%>
       <%= result.price %>円
       <%= result.category.name %>
     </li>

@@ -1,71 +1,55 @@
 <%= javascript_pack_tag "raty" %>
-<div class='main'>
-<%= render "shared/header" %>
-    <% @books.each do |book| %>
-    
-<div class='new-book'>
-  <div class='book-wrap'>
-  <div class='book-new'>
-  
-   <%= link_to book_path(book.id), method: :get do %>
-    
-    
-     <%= image_tag book.image , class: 'book-img'%>
-    
-     <%end%>
-      レビュー  <%= book.review %>
-      <%= link_to book_path(book.id), method: :get do %>
-    <%=  book.title%>
+<div class='post-con'>
+  <div class='side-bar'>
+    <% @categorys.each do |category|%>
+      <ul>
+        <li class="cate-con">
+          <%= link_to "#{category.name}", category_book_path(category.id)%>
+        </li>
+      </ul>
     <%end%>
-    <%= book.created_at.strftime('%Y/%m/%d')%>に投稿
-    <%=link_to book.user.nickname, user_path(book.user.id)%>
-    <%= book.price%>円
-    <%= book.author%>
-    <%= book.category[:name] %><br>
-    <%= book.description%>
-    <%= book.star%>
-     <div id="star-rate-<%= book.id %>"></div>
-          <script>
-          $('#star-rate-<%= book.id %>').raty({
-            size: 36,
-            starOff:  '<%= asset_path('star-off.png') %>',
-            starOn : '<%= asset_path('star-on.png') %>',
-            starHalf: '<%= asset_path('star-half.png') %>',
-            half: true,
-            readOnly: true,
-            score: <%= book.star %>,
-          });
-          </script>  
-    <% if user_signed_in? %>
-								  <span class="favorite_<%= book.id %>" >
-							    		<%= render "like", book: book %>
-									</span>
-								<% else %>
-										<i class="fas fa-heart" style="color: #F96167"></i>
-										<span style="color:black">
-											<%= book.likes.count %>
-										</span>
-								<% end %>
-    <% if user_signed_in? && current_user.id == book.user_id %>
-    </div>
-    <%= link_to '編集', edit_book_path(book.id), method: :get, class: "item-red-btn" %>
-/
-    <%= link_to '削除', book_path(book.id), method: :delete, class:'item-destroy' %>
-    <% else  %>
-    <%# 商品が売れていない場合はこちらを表示しましょう %>
-    <%= link_to '詳細', book_path(book.id),class:"item-red-btn"%>
-    <%# //商品が売れていない場合はこちらを表示しましょう %>
-    <% end %>
-
-    <p>出版社 <%= raw(book.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %></p>
-</div>
   </div>
- <% end %>
- </div>
-
+  </div class="book-con">      
+    <% @books.each do |book| %>
+      <div class='book-new'>
+        <%= link_to book_path(book.id), method: :get do %>
+          <%= image_tag book.image , class: 'book-img'%>
+        <%end%>
+        レビュー  <%= book.review %>
+        <%= link_to book_path(book.id), method: :get do %>
+          <%=  book.title%>
+        <%end%>
+        <%= book.created_at.strftime('%Y/%m/%d')%>に投稿
+        <%=link_to book.user.nickname, user_path(book.user.id)%>
+        <%= book.price%>円
+        <%= book.author%>
+        <%= book.category[:name] %><br>
+        <%= book.description%>
+        <div id="star-rate-<%= book.id %>"></div>
+          <script>
+            $('#star-rate-<%= book.id %>').raty({
+              size: 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half: true,
+              readOnly: true,
+              score: <%= book.star %>,
+            });
+          </script>  
+          <% if user_signed_in? %>
+            <span class="favorite_<%= book.id %>" >
+              <%= render "like", book: book %>
+            </span>
+          <% else %>
+            <i class="fas fa-heart" style="color: #F96167"></i>
+            <span style="color:black">
+              <%= book.likes.count %>
+            </span>
+          <% end %>
+        </div>
+        <p>出版社 <%= raw(book.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %></p>
+      </div>
+    <% end %>
+      </div>
 </div>
-<% @categorys.each do |category|%>
-<li>
-  <%= link_to "#{category.name}", category_book_path(category.id)%>
-</li>
-<%end%>
