@@ -1,31 +1,55 @@
 <%= javascript_pack_tag "raty" %>
-<div class='post-con'>
+<div class='wrapper'>
   <div class='side-bar'>
-    <% @categorys.each do |category|%>
-      <ul>
-        <li class="cate-con">
+    <h3 class='side-title'>カテゴリーで検索</h3>
+    <ul class="categorise">
+      <% @categorys.each do |category|%>
+        <li class="cate-name">
           <%= link_to "#{category.name}", category_book_path(category.id)%>
         </li>
-      </ul>
-    <%end%>
+      <%end%>
+    </ul>
   </div>
-  </div class="book-con">      
+
+  <div class='book-new clearfix'>
+    <p class=review-areatitle><span class="mgl-10">新着レビュー</span></p>
     <% @books.each do |book| %>
-      <div class='book-new'>
+      <div class='book-contena clearfix'>
         <%= link_to book_path(book.id), method: :get do %>
-          <%= image_tag book.image , class: 'book-img'%>
+          <div class="review-img">
+            <%= image_tag book.image , class: 'book-img anot'%>
+          </div>
         <%end%>
-        レビュー  <%= book.review %>
-        <%= link_to book_path(book.id), method: :get do %>
-          <%=  book.title%>
-        <%end%>
-        <%= book.created_at.strftime('%Y/%m/%d')%>に投稿
-        <%=link_to book.user.nickname, user_path(book.user.id)%>
-        <%= book.price%>円
-        <%= book.author%>
-        <%= book.category[:name] %><br>
-        <%= book.description%>
-        <div id="star-rate-<%= book.id %>"></div>
+
+        <div class="review-area">
+            <%= link_to book_path(book.id), method: :get  do %>
+              <div class="titles"><%= book.title%></div>
+            <%end%>
+            <p><%= book.author%></p>
+            <p><%=safe_join(book.review.split("\n"),tag(:br))%></p>
+            <div id="star-rate-<%= book.id %>"></div>
+            <%= book.created_at.strftime('%Y/%m/%d')%>に投稿
+            <%= book.category[:name] %><br>
+            <%= truncate(book.description,length: 20)%>
+            <% if user_signed_in? %>
+              <span class="favorite_<%= book.id %>" >
+                <%= render "like", book: book %>
+              </span>
+            <% else %>
+            <i class="fas fa-heart" style="color: #F96167"></i>
+                <%= book.likes.count %>
+              </span>
+            <% end %>
+            <p>出版社 <%= raw(book.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %></p>
+        </div>
+        <div class="member-img">
+          <% if book.user.image? %>
+            <img src='<%= book.user.image %>' class="icon" alt="ユーザーアイコン">
+          <% else %>
+            <img src="/assets/default.jpg" class="icon" alt="ユーザーアイコン" >
+          <% end %>
+          <p class="usernickname"><%=link_to book.user.nickname, user_path(book.user.id)%>さんの投稿</p>
+        </div>
           <script>
             $('#star-rate-<%= book.id %>').raty({
               size: 36,
@@ -37,19 +61,9 @@
               score: <%= book.star %>,
             });
           </script>  
-          <% if user_signed_in? %>
-            <span class="favorite_<%= book.id %>" >
-              <%= render "like", book: book %>
-            </span>
-          <% else %>
-            <i class="fas fa-heart" style="color: #F96167"></i>
-            <span style="color:black">
-              <%= book.likes.count %>
-            </span>
-          <% end %>
-        </div>
-        <p>出版社 <%= raw(book.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %></p>
       </div>
     <% end %>
-      </div>
+    <%= paginate @books %>
+  </div>
 </div>
+

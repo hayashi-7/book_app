@@ -8,10 +8,19 @@ ja:
        gender: 性別
        age_id: 年齢
      book:
-      name: 本のタイトル
-      price: 値段
+      title: タイトル
+      price: 価格
       publisher: 出版社
       author: 作者
       category_id: カテゴリー
       review: レビュー
-      image: 画像
+      image: 画像URL
+      tag_list: 出版社
+      description: あらすじ
+ views:
+   pagination:
+      first: "&laquo; 最初"
+      last: "最後 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "..."

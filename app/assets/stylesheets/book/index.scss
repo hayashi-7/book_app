@@ -1,0 +1,110 @@
+.wrapper{
+  display: flex;
+}
+li{
+  list-style: none;
+}
+
+a {
+ 
+  text-decoration:none;
+  }
+  a:visited {
+ 
+    color:purple;
+
+  
+    }
+  a:hover {
+ 
+    color:silver;
+    text-decoration:none;
+     
+    }
+
+    .book-img{
+      border: 1px solid #ddd;
+      width:  15vh;
+      height: 22vh;
+      transition-duration: 0.5s;
+    }
+    .book-img img{
+      width: 100%;
+      cursor: pointer;
+    }
+    .book-img:hover{
+      box-shadow: 10px 10px 10px rgba(0,0,0,0.5);
+      transform: translateY(-1px);
+      transition-duration: 0.5s;
+    }
+    .anot{
+      width: 18vh ;
+      height: 27vh ;
+    }
+    .ver1{
+      width: 29vh;
+      height: 43vh;
+    }
+
+.cate-name{
+  margin-top: 18px;
+  text-align: start;
+}    
+
+.side-bar {
+  height: 100%;
+  width:60vh;
+  padding: 20px 20px 0 43px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+.side-title{
+  font-size: 19px;
+  padding-bottom: 16px;
+  border-bottom: solid 1px rgb(216, 213, 213);
+  width:28vh;
+}
+.book-contena{
+  border: rgb(184, 182, 182) solid 1px;
+  margin-bottom: 10px ;
+  display: flex;
+  justify-content: space-between;
+  font-size: 3vh;
+}
+
+.review-areatitle{
+  color: white;
+  background-color: rgb(131, 58, 10);
+  line-height:32px;
+
+}
+.mgl-10{
+  margin-left: 20px;
+}
+.review-img {
+  width: 130px;
+  margin: 15px 0 0 15px;
+}
+.review-area{
+    width: 400px;
+    padding: 15px 30px 0 0;
+    @media (max-width:992px){
+      width:150px;
+    }
+}
+.member-img{
+  margin: 13px 28px 0 0;
+  width: 150px;
+  
+}
+.titles{
+  font-size: 18px;
+
+  overflow: hidden;
+white-space: nowrap;
+text-overflow: ellipsis;
+}
+.usernickname{
+  text-align: center;
+}
+

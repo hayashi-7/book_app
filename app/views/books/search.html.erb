@@ -1,17 +1,16 @@
-
-<%# 検索結果の個数で条件分岐 %>
 <% if @results.length !=0 %>
   <% @results.each do |result| %>
+  <ul>
     <li>
       <%= result.title %>
-
       <%= image_tag result.image ,class: 'book-img'%>
       <%= result.price %>円
       <%= result.category.name %>
     </li>
+  </ul>
   <% end %>
 <% else %>
-  該当する商品はありません
+  <h1 class="searchtitle">検索結果０件</h1>
 <% end %>
 <br>
-<%= link_to 'トップページへ戻る', root_path %>
+<h2 class="returnlink"><%= link_to 'トップページへ戻る', root_path %></h2>

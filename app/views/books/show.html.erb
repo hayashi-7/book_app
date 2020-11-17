@@ -1,20 +1,44 @@
- 
+<%= javascript_pack_tag "raty" %>
+<div id="reviewhead">
+  <div id="title">
+    <h1><%= @book.user.nickname%>さんのレビュー</h1>
+  </div>
+</div>
+<div id="reviewarea">
+  <div id="mainarea">
+    <div class="reviewtitle">
+      <%= @book.title%>
+    </div>
+  <div class="reviewmain">
+    <p class="summary"><div id="star-rate-<%= @book.id %>">評価：</div></p>
+    <p class="summary">著者：<%= @book.author%></p>
+    <p class="summary">投稿日：<%= @book.created_at.strftime('%Y/%m/%d')%></p>
     
-    
-     <%= image_tag @book.image , class: 'book-img'%>
+    <p class="summary"><%= @book.category[:name] %></p>
+    <p class="summary"><%= @book.price%>円</p>
+  <div class="reviewImg"><%= image_tag @book.image , class: 'ver1'%></div>
     
      
-      
-    <%=  @book.title%>
+
    
-    <%= @book.review%>
-    <%= @book.price%>円
-    <%= @book.author%>
-    <%= @book.category[:name] %>
+    <p><%=safe_join(@book.review.split("\n"),tag(:br))%></p>
+    <span class="favorite_<%= @book.id %>" >
+			<%= render "like", book: @book %>
+		</span>
+          <script>
+            $('#star-rate-<%= @book.id %>').raty({
+              size: 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half: true,
+              readOnly: true,
+              score: <%= @book.star %>,
+            });
+          </script>
     <% if user_signed_in? && current_user.id == @book.user_id %>
           <%= link_to '編集', edit_book_path(@book.id), method: :get, class: "item-red-btn" %>/
           <%= link_to '削除', book_path(@book.id), method: :delete, class:'item-destroy' %>
         <% end %>
-   <span class="favorite_<%= @book.id %>" >
-							    		<%= render "like", book: @book %>
-									</span>
+  </div>
+</div>

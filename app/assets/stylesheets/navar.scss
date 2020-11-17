@@ -1,6 +1,6 @@
 
 .navbar {
-  background-color: #831517;
+  background-color: black;
   position: relative;
   display: flex;
   flex-wrap: wrap;
@@ -8,6 +8,7 @@
   justify-content: space-between;
   padding: 0.5rem 1rem;
   width: 100%;
+  box-sizing:border-box;
   .fa-circle {
     position: relative;
     top: 16px;
@@ -67,16 +68,8 @@
     padding: 0.5rem 0.2rem 0.5rem 1rem;
     border-radius: 10px;
     &:hover {
-      background-color: #cd5c5c;
+      background-color: #4d4b4b;
     }
-  }
-
-  .fas {
-    color: #fff;
-    position: relative;
-    top: 12px;
-    left: 7px;
-    font-size: 18px;
   }
 }
 
@@ -86,12 +79,6 @@
   }
   .navbar {
     width: 100%;
-  }
-  .fas {
-    color: #fff;
-    position: relative;
-    top: 33px;
-    font-size: 18px;
   }
   .nav-link {
     position: relative;

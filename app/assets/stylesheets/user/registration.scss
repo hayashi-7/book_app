@@ -1,0 +1,14 @@
+.input-default{
+  resize: none;
+}
+@media screen and (max-width: 991px) {
+  .user-container {
+    .entry {
+      width: 300px;
+    }
+    .entry-btn {
+      width: 300px;
+      margin-top: 25px;
+    }
+  }
+}

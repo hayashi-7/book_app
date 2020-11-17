@@ -2,8 +2,8 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 .icon {
-  width: 100px;
-  height: 100px;
+  width: 150px;
+  height: 150px;
   //サイズ指定
   border-radius: 100px;
   //画像を丸くする
@@ -12,12 +12,12 @@
 }
 .btn-outline-secondary{
   display       : inline-block;
-  border-radius : 5%;          /* 角丸       */
+  border-radius : 10px;          /* 角丸       */
   font-size     : 13pt;        /* 文字サイズ */
   text-align    : center;      /* 文字位置   */
   cursor        : pointer;     /* カーソル   */
   padding       : 7px 12px;   /* 余白       */
-  background    : #7f0000;     /* 背景色     */
+  background    : #5c7979;     /* 背景色     */
   color         : #ffffff;     /* 文字色     */
   line-height   : 1em;         /* 1行の高さ  */
   opacity       : 1;           /* 透明度     */

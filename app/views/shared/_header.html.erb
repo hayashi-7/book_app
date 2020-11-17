@@ -1,39 +1,36 @@
-<header class='site-header'>
-<nav class="navbar navbar-expand-lg">
-        <%= link_to 'BooKREV', root_path, class:'navbar-barand', style:'color: white'%>
-       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+<header>
+  <nav class="navbar navbar-expand-lg">
+    <%= link_to 'BooKREV', root_path, class:'navbar-barand', style:'color: white'%>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
         <% if user_signed_in? %>
-                <li class="nav-item">
-                    <%= link_to '投稿する', new_book_path, class:'nav-link'%>
-                </li>
-                <li class="nav-item">
-                <i class="fas fa-user"></i>   
-                    <a class="nav-link" href="#">データ一覧</a>
-                </li>
-                <li class="nav-item">
-                <i class="fas fa-users"></i>  
-                    <a class="nav-link" href="#">エクスポート</a>
-                </li>
-              
+          <li class="nav-item">
+            <%= link_to '投稿する', new_book_path, class:'nav-link'%>
+          </li>
+          <li class="nav-item">                
+            <%= link_to "マイページ", user_path(current_user.id), class:'nav-link' %>
+          </li>
+          <li class="nav-item">  
+            <%= link_to 'ログアウト',destroy_user_session_path, method: :delete, class:'nav-link' %>
+          </li>
+                
         <%else%>
-          
-            <li class="nav-item active">
-              <%= link_to '新規登録', new_user_registration_path, class:'nav-link'%>
-            </li>
-            <li class="nav-item">
-              <%= link_to 'ログイン', new_user_session_path, class:'nav-link'%>
-            </li>
+          <li class="nav-item active">
+            <%= link_to '新規登録', new_user_registration_path, class:'nav-link'%>
+          </li>
+          <li class="nav-item">
+            <%= link_to 'ログイン', new_user_session_path, class:'nav-link'%>
+          </li>
         <%end%>
-          </ul>
-        <%= search_form_for @p, url: search_books_path do |f| %>
-  
-  <%= f.search_field :title_cont, placeholder: 'キーワードを入力'%>
-  <%= f.submit '検索' %>
-<% end %>
-        </div>
-    </nav>
+      </ul>
+      <%= search_form_for @p, url: search_books_path do |f| %>
+        <%= f.search_field :title_cont, placeholder: 'キーワードを入力'%>
+        <%= f.submit '検索' %>
+      <% end %>
+    </div>
+  </nav>
 </header>
+

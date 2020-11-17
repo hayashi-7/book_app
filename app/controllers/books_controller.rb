@@ -1,11 +1,11 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[edit show update destroy]
   def index
-    @books = Book.order('created_at DESC')
+    @books = Book.order('created_at DESC').page(params[:page]).per(9)
       if params[:tag]
-        @books = Book.tagged_with(params[:tag])
+        @books = Book.tagged_with(params[:tag]).page(params[:page]).per(9)
       else
-        @books = Book.all
+        @books = Book.all.page(params[:page]).per(9)
       end
       @categorys = Category.where.not(id: 1)
   end

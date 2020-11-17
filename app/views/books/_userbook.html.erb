@@ -1,18 +1,33 @@
-<%= link_to book_path(book.id), method: :get do %>
-    
-    
-     <%= image_tag book.image , class: 'book-img'%>
-    
-     <%end%>
-      レビュー  <%= book.review %>
-      <%= link_to book_path(book.id), method: :get do %>
-    <%=  book.title%>
+<%= javascript_pack_tag "raty"%>
+<div class="user-posts-lower">
+  <%= link_to book_path(book.id), method: :get do %>
+    <div class="newreveimg">
+      <%= image_tag book.image , class: 'book-img'%>
+    </div>
+  <%end%>
+  <div class="newarea">
+    <span>
+    <%= link_to book_path(book.id), method: :get do %>
+      <div class="booklist-title">
+        <%=  book.title%>
+      </div>
     <%end%>
-    <%= book.created_at.strftime('%Y/%m/%d')%>に投稿
-    <%=link_to book.user.nickname, user_path(book.user.id)%>
-    <%= book.price%>円
-    <%= book.author%>
-    <%= book.category[:name] %><br>
-    <%= book.description%>
-    <i class="fas fa-heart" style="color: #F96167"></i>
-		<span><%= book.likes.count %></span>
+    <div class="postday">
+      <%= book.created_at.strftime('%Y/%m/%d')%>に投稿
+    </div>
+    <div class="newreve"><%=safe_join(book.review.split("\n"),tag(:br))%></div>
+    </span>
+  </div>
+    <div class="starscore"><div id="star-rate-<%= book.id %>"></div></div>
+  <script>
+        $('#star-rate-<%= book.id %>').raty({
+          size: 36,
+          starOff:  '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+          starHalf: '<%= asset_path('star-half.png') %>',
+          half: true,
+          readOnly: true,
+          score: <%= book.star %>,
+        });
+    </script>  
+</div>

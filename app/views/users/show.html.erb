@@ -1,42 +1,57 @@
 <%= javascript_pack_tag "user_show" %>
-<% if @user.image? %>
-  <img src='<%= @user.image %>' class="icon" alt="ユーザーアイコン">
-<% else %>
-  <img src="/assets/default.jpg" class="icon" alt="ユーザーアイコン" >
-<% end %>
-<p><%= @user.nickname%></p>
-<div class="contents row">
-  <div id="follow_form">
-    <%= render 'follow_form' %>
-  </div>
-  <table id="relationship">
-    <%= render "relationship" %>
-  </table>
-<%= link_to '編集', edit_user_path%>
-<%= link_to "top", root_path%>
-  <div class="tabmenu">
-    <ul class="tab clearfix">
-      <li class="active"><%= @user.nickname %>さんの投稿一覧</li>
-      <li>いいね一覧</li>
-    </ul>
-    <div class="area">
-    <ul class="show">
-      <li>
-        <% @books.each do |book| %>
-          <%= render partial: "books/userbook", locals: { book: book } %>
-        <% end %>
-      </li>
-      </ul>
-      <ul>
-      <li>
-        <%@likes.each do |like|%>
-          <%=link_to book_path(like.book) do%>
-            <%=image_tag like.book.image, class: 'book-img'%>
-            <%= like.book.title%>
-          <%end%>
-        <%end%>
-      </li>
-    </ul>
+<div id="container">
+  <div class="users-container">
+  <% if @user.image? %>
+    <img src='<%= @user.image %>' class="show-icon" alt="ユーザーアイコン">
+  <% else %>
+    <img src="/assets/default.jpg" class="show-icon" alt="ユーザーアイコン" >
+  <% end %>
+  <p class="show-nickname"><%= @user.nickname%></p>
+  <div class="contents row">
+    <div id="follow_form">
+      <%= render 'follow_form' %>
     </div>
+    <div id="relationship">
+      <%= render "relationship" %>
+    </div>
+    <% if current_user == @user %>
+      <div class="acount-edit">
+        <%= link_to "プロフィールを編集", edit_user_path(@user), class: "user-edit-btn" %>
+      </div>
+    <% end %>
+    <div class="tabmenu">
+      <ul class="tab clearfix">
+        <li class="active">投稿一覧</li>
+        <li>いいね一覧</li>
+      </ul>
+      <div class="area">
+        <ul class="show">
+          <li class="ruu">
+            <% @books.each do |book| %>
+              <%= render partial: "books/userbook", locals: { book: book , user: @user}%>
+            <% end %>
+          </li>
+        </ul>
+        <ul>
+          <li>
+            <div class="likebook-list">
+              <%@likes.each do |like|%>
+              <div class="likelists">
+                <%=link_to book_path(like.book) do%>
+                  <div class="likebook-img">
+                    <%=image_tag like.book.image, class: 'book-img'%>
+                  </div>
+                  <span class="likebook-title">
+                    <%= like.book.title%>
+                  </span>
+                <%end%>
+              </div>
+              <%end%>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
   </div>
 </div>

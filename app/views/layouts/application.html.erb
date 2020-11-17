@@ -4,7 +4,7 @@
     <title>BookApp</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0"> 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
@@ -13,7 +13,10 @@
   </head>
       
   <body>
-  <%= render "shared/header" %>
-    <%= yield %>
+    <%= render "shared/header" %>
+    <main class="main-users main-books">
+      <%= yield %>
+    </main>
+    <%= render "shared/footer"%>
   </body>
 </html>

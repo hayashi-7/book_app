@@ -1,0 +1,141 @@
+.tab {
+  border-bottom: 1px solid rgb(196, 189, 189);
+  padding: 0 140px;
+  display: flex;
+  margin: 0 60px;
+}
+.tab li {
+  color: #333;
+
+  margin: 0 10px -1px 0;
+  padding: 10px 20px;
+  border: 1px solid  rgb(196, 189, 189);
+  cursor: pointer;
+  list-style: none;
+  transition: .3s;
+}
+.tab li.active {
+  color: #fff;
+  background: black;
+  cursor: auto;
+
+}
+ 
+.area ul {
+  display: none;
+}
+.area ul.show {
+  display: block;
+}
+
+#container{
+  text-align: center ;
+}
+#registuser{
+  text-align: center;
+}
+.users-container{
+    margin: 40px 0 30px 0;
+    padding-bottom: 7px;
+    background-color: #fff;
+    width: 650px;
+    border: 1px solid black;
+    box-shadow: 0 0 4px black;
+    color: black;
+    border-radius: 10px;
+    text-align: center;
+    display: inline-block;
+}
+.show-icon {
+  width: 200px;
+  height: 200px;
+  margin-top: 40px;
+  border-radius: 100px;
+  
+  object-fit: cover;
+
+}
+.show-nickname{
+  font-size: 30px;
+  margin-top: 30px;
+}
+.acount-edit {
+  margin: 20px 0;
+  font-size: 18px;
+   a {
+    color: #b1aeae;
+    &:hover {
+      color: #007bff;
+      text-decoration: none;
+    }
+  }
+}
+
+.user-posts-lower {
+  display: flex;
+  flex-wrap: wrap;
+  border-bottom: 2px #b1aeae solid;
+  margin-top: 10px;
+  position: relative;
+}
+.newarea{
+  padding: 0 0 10px 20px;
+  width: 350px;
+  font-size: 18px;
+  
+}
+ .postday{
+  display: flex;
+}
+.booklist-title{
+  font-size: 17px;
+  overflow: hidden;
+  white-space: nowrap;
+  width: 350px;
+  text-overflow: ellipsis;
+  text-align: left;
+}
+.postday{
+  font-size: 14px;
+  margin-bottom: 7px;
+  border-bottom:rgb(196, 189, 189) 1px solid;
+}
+.newreveimg{
+  padding:0 0 10px 17px;
+}
+.starscore{
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin-right: 8px;
+  margin-bottom: 4px;
+}
+.newreve{
+  word-wrap:break-all;
+  width: 350px;
+  text-align: left;
+  height: 90px;
+  padding-top: 10px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 5;
+}
+.likebook-list{
+  display: flex;
+  flex-wrap: wrap;
+}
+.likebook-title{
+  display: block;
+    margin-top: 5px;
+    text-align: center;
+    font-size: 10px;
+    width: 120px;
+    overflow: hidden;
+  white-space: nowrap;
+  
+  text-overflow: ellipsis;
+}
+.likelists{
+  margin: 5px 20px 5px 20px;
+}
