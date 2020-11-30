@@ -15,9 +15,9 @@
         <div class="actions">
           <%= f.submit "ログイン", class: "entry-btn" %>
         </div>
-        <div class="actions">
-         <%= link_to 'ゲストログイン（閲覧用）', users_guest_sign_in_path, class: "entry-btn", method: :post %>
-        </div>
+      
+         <%= link_to 'ゲストログイン', users_guest_sign_in_path, class: "entry-btn gestent" , method: :post %>
+     
     <% end %>
   </div>
 </div>

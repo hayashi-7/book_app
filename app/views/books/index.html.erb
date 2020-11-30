@@ -23,14 +23,13 @@
 
         <div class="review-area">
             <%= link_to book_path(book.id), method: :get  do %>
-              <div class="titles"><%= book.title%></div>
+              <div class="titles"><%= truncate(book.title,length: 18)%></div>
             <%end%>
             <p><%= book.author%></p>
-            <p><%=safe_join(book.review.split("\n"),tag(:br))%></p>
+            <p class="review-space"><%=safe_join(book.review.split("\n"),tag(:br))%></p>
             <div id="star-rate-<%= book.id %>"></div>
-            <%= book.created_at.strftime('%Y/%m/%d')%>に投稿
-            <%= book.category[:name] %><br>
-            <%= truncate(book.description,length: 20)%>
+            <p><%= book.created_at.strftime('%Y/%m/%d')%>に投稿</p>
+            <p><%= book.category[:name] %><p>
             <% if user_signed_in? %>
               <span class="favorite_<%= book.id %>" >
                 <%= render "like", book: book %>
@@ -38,15 +37,15 @@
             <% else %>
             <i class="fas fa-heart" style="color: #F96167"></i>
                 <%= book.likes.count %>
-              </span>
+             
             <% end %>
             <p>出版社 <%= raw(book.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %></p>
         </div>
         <div class="member-img">
           <% if book.user.image? %>
-            <img src='<%= book.user.image %>' class="icon" alt="ユーザーアイコン">
+            <img src='<%= book.user.image %>' class="post-icon" alt="ユーザーアイコン">
           <% else %>
-            <img src="/assets/default.jpg" class="icon" alt="ユーザーアイコン" >
+            <img src="/assets/default.jpg" class="post-icon" alt="ユーザーアイコン" >
           <% end %>
           <p class="usernickname"><%=link_to book.user.nickname, user_path(book.user.id)%>さんの投稿</p>
         </div>

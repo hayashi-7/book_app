@@ -1,4 +1,8 @@
-<h1>フォローしているユーザー</h1>
+<div class="fol-contena">
+<h1 class="fol-title">フォローされているユーザー</h1>
 <% @users.each do |user| %>
+<div class="fol-list">
   <%= render "shared/user_link", user: user %>
+</div>
 <% end %>
+</div>

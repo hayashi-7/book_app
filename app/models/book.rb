@@ -12,17 +12,17 @@ class Book < ApplicationRecord
     validates :author
     validates :review
     validates :image
-    validates :description
   end
   validates :category_id, numericality: { other_than: 1 }
-  
+
   def self.category(category)
     if 1 < category.to_i && category.to_i < 19
       Book.where(category_id: category)
-      else
+    else
       Book.all
     end
   end
+
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
   end

@@ -2,12 +2,12 @@ class BooksController < ApplicationController
   before_action :set_book, only: %i[edit show update destroy]
   def index
     @books = Book.order('created_at DESC').page(params[:page]).per(9)
-      if params[:tag]
-        @books = Book.tagged_with(params[:tag]).page(params[:page]).per(9)
-      else
-        @books = Book.all.page(params[:page]).per(9)
-      end
-      @categorys = Category.where.not(id: 1)
+    @books = if params[:tag]
+               Book.tagged_with(params[:tag]).page(params[:page]).per(9)
+             else
+               Book.all.page(params[:page]).per(9)
+             end
+    @categorys = Category.where.not(id: 1)
   end
 
   def new
@@ -17,34 +17,35 @@ class BooksController < ApplicationController
 
   def destroy
     if user_signed_in? && current_user.id == @book.user_id
-       if @book.destroy
-         redirect_to root_path
-       else
-         render :show
-       end
+      if @book.destroy
+        redirect_to root_path
+      else
+        render :show
+      end
     else
       redirect_to new_user_session_path
     end
   end
 
-  
+  def show; end
 
-  def show
-  end
+  def edit; end
 
-  def edit
-  end
-  
   def update
     if @book.update(book_params)
-       redirect_to root_path
+      redirect_to root_path
     else
-       render :edit
+      render :edit
     end
   end
 
   def category
     @books = Book.category(params[:id])
+    @categorys = Category.where.not(id: 1)
+  end
+
+  def search
+    @categorys = Category.where.not(id: 1)
   end
 
   def create
@@ -53,10 +54,11 @@ class BooksController < ApplicationController
       redirect_to root_path
     else
       render :new
-   end
+    end
   end
-  
+
   private
+
   def set_book
     @book = Book.find(params[:id])
   end

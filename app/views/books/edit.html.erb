@@ -1,31 +1,53 @@
-
+<%= javascript_pack_tag "raty" %>
 <%= form_with model: @book, local: true do |f| %>
-   <%= render 'shared/error_messages', model: f.object %>
-    <%= image_tag @book.image , class: 'book-img'%>
-     本のカテゴリー
-    <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"book-category"}) %>
+  <%= render 'shared/error_messages', model: f.object %>
+  <div class="new-wrap">
+  <div class="books">
+    <div class="book-info">
+      <div class="form-group">
+      <%= f.label :title %>
+        <%= f.text_field :title, class:"input-default", id:"title" %>
       </div>
-     
-     <div class='book-whie'>
-     本の名前
-     <%= f.text_area :title, class:"input-default", id:"name" %>
-     </div>
-     <div class='book-whie'>
-     値段
-     ¥<%= f.text_area :price, class:"input-default", id:"price" %>
-     </div>
-     <div class='book-whie'>
-     作者
-          <%= f.text_area :author, class:"input-default", id:"author" %>
+      <div class="form-group">
+      <%= f.label :author %>
+      <%= f.text_field :author, class:"input-default", id:"author" %>
       </div>
-      <div class='book-whie'>
-      出版社
-         <%= f.text_field :tag_list, value:@book.tag_list.join('') %>
-         </div>
-         <div class='book-whie'>
-      レビュー
-         <%= f.text_area :review, class:"input-text", id:"review" %>
-         </div>
-         <%= f.submit '投稿する'%>
+    <div class="form-group">
+        <%= f.label :tag_list %>
+        <%= f.text_field :tag_list, value:@book.tag_list.join(''), id:"publisher", class:"input-default"%>
     </div>
-  <%end%>
+    <div class='book-whie'>
+        <%= f.label :category_id %>
+        <%= f.collection_select(:category_id, Category.all, :id, :name, {}, {class:"input-default", id:"book-category"}) %>
+    </div>
+    <div class="form-group">
+        <%= f.label :price %>
+        <%= f.text_field :price, class:"input-default", id:"price" , class:"input-default"%>
+    </div>
+    <div class="form-group row" id="star">
+        <%= f.label :star,'評価 ', class:'col-md-3 col-form-label' %>
+        <%= f.hidden_field :star, id: :review_star %>
+    </div>
+    </div>
+  </div>
+    <div class="review-form-group">
+        <%= f.label :review %>
+        <%= f.text_area :review, class:"input-text", id:"review" %>
+    </div>
+    <div class="forgroup">
+    <%= f.text_field :description, id:"description"%></div>
+    <div class="newpost">
+    <%= f.submit '更新する',class:"post-btn" %>
+    </div>
+    <script>
+  $('#star').raty({
+    size     : 36,
+    starOff:  '<%= asset_path('star-off.png') %>',
+    starOn : '<%= asset_path('star-on.png') %>',
+    starHalf: '<%= asset_path('star-half.png') %>',
+    scoreName: 'book[star]',
+    half: true
+  });
+  </script> 
+  </div>
+<%end%>

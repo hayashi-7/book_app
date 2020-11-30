@@ -1,16 +1,71 @@
+<%= javascript_pack_tag "raty" %>
 <% if @results.length !=0 %>
+  <div class='wrapper'>
+  <div class='side-bar'>
+    <h3 class='side-title'>カテゴリーで検索</h3>
+    <ul class="categorise">
+      <% @categorys.each do |category|%>
+        <li class="cate-name">
+          <%= link_to "#{category.name}", category_book_path(category.id)%>
+        </li>
+      <%end%>
+    </ul>
+  </div>
+
+  <div class='book-new clearfix'>
+    <p class=review-areatitle><span class="mgl-10">新着レビュー</span></p>
   <% @results.each do |result| %>
-  <ul>
-    <li>
-      <%= result.title %>
-      <%= image_tag result.image ,class: 'book-img'%>
-      <%= result.price %>円
-      <%= result.category.name %>
-    </li>
-  </ul>
-  <% end %>
+      <div class='book-contena clearfix'>
+        <%= link_to book_path(result.id), method: :get do %>
+          <div class="review-img">
+            <%= image_tag result.image , class: 'book-img anot'%>
+          </div>
+        <%end%>
+
+        <div class="review-area">
+            <%= link_to book_path(result.id), method: :get  do %>
+              <div class="titles"><%= truncate(result.title,length: 20)%></div>
+            <%end%>
+            <p><%= result.author%></p>
+            <p class="review-space"><%=safe_join(result.review.split("\n"),tag(:br))%></p>
+            <div id="star-rate-<%= result.id %>"></div>
+            <%= result.created_at.strftime('%Y/%m/%d')%>に投稿
+            <%= result.category[:name] %><br>
+            <% if user_signed_in? %>
+              <span class="favorite_<%= result.id %>" >
+                <%= render "like", book: result %>
+              </span>
+            <% else %>
+            <i class="fas fa-heart" style="color: #F96167"></i>
+                <%= result.likes.count %>
+              </span>
+            <% end %>
+            <p>出版社 <%= raw(result.tag_list.map { |t| link_to t, tag_path(t) }.join(', ')) %></p>
+        </div>
+        <div class="member-img">
+          <% if result.user.image? %>
+            <img src='<%= result.user.image %>' class="post-icon" alt="ユーザーアイコン">
+          <% else %>
+            <img src="/assets/default.jpg" class="post-icon" alt="ユーザーアイコン" >
+          <% end %>
+          <p class="usernickname"><%=link_to result.user.nickname, user_path(result.user.id)%>さんの投稿</p>
+        </div>
+          <script>
+            $('#star-rate-<%= result.id %>').raty({
+              size: 36,
+              starOff:  '<%= asset_path('star-off.png') %>',
+              starOn : '<%= asset_path('star-on.png') %>',
+              starHalf: '<%= asset_path('star-half.png') %>',
+              half: true,
+              readOnly: true,
+              score: <%= result.star %>,
+            });
+          </script>  
+      </div>
+    <% end %>
+  
+  </div>
+  </div><h2 class="returnlink"><%= link_to 'トップページへ戻る', root_path %></h2>
 <% else %>
-  <h1 class="searchtitle">検索結果０件</h1>
+  <h1 class="searchtitle">検索結果０件<br /><%= link_to 'トップページへ戻る', root_path ,class: "toplink"%></h1>
 <% end %>
-<br>
-<h2 class="returnlink"><%= link_to 'トップページへ戻る', root_path %></h2>

@@ -1,3 +1,7 @@
 <%= link_to("/users/#{user.id}") do %>
-  <%= user.nickname %>
+  <div class="followuser"><% if user.image? %>
+    <img src='<%= user.image %>' class="fol-icon" alt="ユーザーアイコン">
+  <% else %>
+    <img src="/assets/default.jpg" class="fol-icon" alt="ユーザーアイコン" >
+  <% end %><span class="folname"><%= user.nickname %></span></div>
 <% end %>

@@ -4,9 +4,10 @@ class ApplicationController < ActionController::Base
   before_action :search_book
 
   def search_book
-    @p = Book.ransack(params[:q])  
+    @p = Book.ransack(params[:q])
     @results = @p.result
   end
+
   protected
 
   def configure_permitted_parameters

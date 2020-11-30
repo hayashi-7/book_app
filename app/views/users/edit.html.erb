@@ -1,15 +1,21 @@
 <%= form_for(@user) do |f| %>
-  <div class="field">
+<div class="container">
+  <div class="users-container edit-user">
     <% if @user.image? %>
       <%= image_tag @user.image.url,  class: "icon", id: "img_prev" %>
     <% else %>
       <%= image_tag "default.jpg", alt: "user-icon",  class: "icon", id: "img_prev" %>
     <% end %>
-    <br>
+    <br />
+    <div>
     <%= f.label "アイコン画像" %>
     <%= f.file_field :image %>
-  </div>
+    </div>
+    <div>
   <%= f.label "ニックネーム"%>
-  <%= f.text_field :nickname%>
-  <%= f.submit '更新'%>
+  <%= f.text_field :nickname, class:"edit-entry"%>
+  </div>
+  <%= f.submit '更新', class:"edit-entry-btn"%>
+  </div>
+  </div>
 <% end %>
