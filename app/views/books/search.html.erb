@@ -46,7 +46,7 @@
           <% if result.user.image? %>
             <img src='<%= result.user.image %>' class="post-icon" alt="ユーザーアイコン">
           <% else %>
-            <img src="/assets/default.jpg" class="post-icon" alt="ユーザーアイコン" >
+           <%= image_tag "default.jpg", alt: "ユーザーアイコン",  class: "post-icon"%>
           <% end %>
           <p class="usernickname"><%=link_to result.user.nickname, user_path(result.user.id)%>さんの投稿</p>
         </div>

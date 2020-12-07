@@ -4,7 +4,7 @@
   <% if @user.image? %>
     <img src='<%= @user.image %>' class="show-icon" alt="ユーザーアイコン">
   <% else %>
-    <img src="/assets/default.jpg" class="show-icon" alt="ユーザーアイコン" >
+    <%= image_tag "default.jpg", alt: "ユーザーアイコン",  class: "show-icon"%>
   <% end %>
   <p class="show-nickname"><%= @user.nickname%></p>
   <div class="contents row">

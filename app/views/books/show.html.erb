@@ -51,7 +51,7 @@
           <% if @book.user.image? %>
             <img src='<%= @book.user.image %>' class="post-icon" alt="ユーザーアイコン">
           <% else %>
-            <img src="/assets/default.jpg" class="post-icon" alt="ユーザーアイコン" >
+           <%= image_tag "default.jpg", alt: "ユーザーアイコン",  class: "post-icon"%>
           <% end %>
         <%end%>
       

@@ -2,6 +2,6 @@
   <div class="followuser"><% if user.image? %>
     <img src='<%= user.image %>' class="fol-icon" alt="ユーザーアイコン">
   <% else %>
-    <img src="/assets/default.jpg" class="fol-icon" alt="ユーザーアイコン" >
+   <%= image_tag "default.jpg", alt: "ユーザーアイコン",  class: "fol-icon"%>
   <% end %><span class="folname"><%= user.nickname %></span></div>
 <% end %>
