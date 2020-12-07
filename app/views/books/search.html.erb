@@ -24,13 +24,13 @@
 
         <div class="review-area">
             <%= link_to book_path(result.id), method: :get  do %>
-              <div class="titles"><%= truncate(result.title,length: 20)%></div>
+              <div class="titles"><%= truncate(result.title,length: 18)%></div>
             <%end%>
             <p><%= result.author%></p>
             <p class="review-space"><%=safe_join(result.review.split("\n"),tag(:br))%></p>
             <div id="star-rate-<%= result.id %>"></div>
-            <%= result.created_at.strftime('%Y/%m/%d')%>に投稿
-            <%= result.category[:name] %><br>
+            <p><%= result.created_at.strftime('%Y/%m/%d')%>に投稿</p>
+            <p><%= result.category[:name] %></p>
             <% if user_signed_in? %>
               <span class="favorite_<%= result.id %>" >
                 <%= render "like", book: result %>
