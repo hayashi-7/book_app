@@ -1,8 +1,8 @@
 <%= javascript_pack_tag "raty" %>
 <%= form_with model: @book, local: true do |f| %>
-  <%= render 'shared/error_messages', model: f.object %>
   <div class="new-wrap">
       <div class="isbn-form-group">
+      <%= render 'shared/error_messages', model: f.object %>
         ISBN(13桁)<input id="isbn" type="text" name="isbn" value="" autofocus>
         <button id="getBook" class="btn btn-default">書籍情報取得</button>
       </div>
